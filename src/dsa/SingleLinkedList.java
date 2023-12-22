@@ -47,7 +47,6 @@ public class SingleLinkedList {
         }
 
     }
-
     public Node delete(int val){
         if (head.val == val) {
             head = head.next;
@@ -93,6 +92,9 @@ public class SingleLinkedList {
     }
     //get node from an index
     public Node getNode(int index) {
+        if(index < 0 || index >= size) {
+            throw new ArrayIndexOutOfBoundsException("index is out of bounds");
+        }
         Node node = head;
         for (int i = 0; i < index && node != null; i++) {
             node = node.next;
@@ -104,28 +106,14 @@ public class SingleLinkedList {
     public Node deleteFromIndex(int index){
         Node node = head;
         if(index==0){
-            //remove head
+            head = head.next;
+            size--;
         }else{
-            //remove other
+           Node temp = getNode(index-1);
+           temp.next = temp.next.next;
+           size--;
         }
+        return head;
     }
-    /*
-     * 1 -> 2 -> 3 -> 4
-     *  */
-
-
-    public static void main(String args []){
-        SingleLinkedList list = new SingleLinkedList();
-        list.add(10);
-        list.add(20);
-        list.add(30);
-        list.add(40);
-        list.add(70,5);
-        //list.delete(10);
-        list.printList();
-        System.out.println();
-        System.out.println("List size " + list.size());
-    }
-
 }
 
