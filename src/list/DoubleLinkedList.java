@@ -1,4 +1,4 @@
-package dsa;
+package list;
 
 public class DoubleLinkedList {
      ListNode head;
